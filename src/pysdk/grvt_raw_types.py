@@ -1420,8 +1420,6 @@ class Instrument:
     kind: Kind
     # Venues that this instrument can be traded at
     venues: list[Venue]
-    # The settlement period of the instrument
-    settlement_period: InstrumentSettlementPeriod
     # The smallest denomination of the base asset supported by GRVT (+3 represents 0.001, -3 represents 1000, 0 represents 1)
     base_decimals: int
     # The smallest denomination of the quote asset supported by GRVT (+3 represents 0.001, -3 represents 1000, 0 represents 1)
@@ -1432,8 +1430,10 @@ class Instrument:
     min_size: str
     # Creation time in unix nanoseconds
     create_time: str
-    # The maximum position size, expressed in base asset decimal units
-    max_position_size: str
+    # The settlement period of the instrument. Not set for spot-swap instruments.
+    settlement_period: InstrumentSettlementPeriod | None = None
+    # The maximum position size, expressed in base asset decimal units. Not set for spot-swap instruments.
+    max_position_size: str | None = None
 
 
 @dataclass
