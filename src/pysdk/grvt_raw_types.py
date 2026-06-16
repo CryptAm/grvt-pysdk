@@ -99,6 +99,8 @@ class Kind(Enum):
     CALL = "CALL"
     # the put option asset kind
     PUT = "PUT"
+    # the spot swap asset kind
+    SPOT_SWAP = "SPOT_SWAP"
 
 
 class MarginType(Enum):
@@ -1561,6 +1563,8 @@ class ApiFundingRateResponse:
 class ApiGetAllInstrumentsRequest:
     # Fetch only active instruments
     is_active: bool | None = None
+    # The kind filter to apply. If nil, this defaults to perpetuals. Otherwise, only entries matching the filter will be returned
+    kinds: list[Kind] | None = None
 
 
 @dataclass
